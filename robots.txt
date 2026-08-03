@@ -1,3 +1,4 @@
 User-agent: *
-  Allow: /
-  Sitemap: https://belvederedudomaine.fr/sitemap.xml
+Allow: /
+
+Sitemap: https://belvedere65.com/sitemap.xml

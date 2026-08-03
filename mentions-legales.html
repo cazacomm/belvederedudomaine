@@ -1,59 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentions légales - Le Belvédère du Domaine</title>
-  <link rel="stylesheet" href="style.css"> <!-- à adapter selon ton projet -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mentions légales – Le Belvédère du Domaine</title>
+  <meta name="description" content="Mentions légales du site du Belvédère du Domaine, lieu de réception à Tournay (65) : éditeur, hébergement, propriété intellectuelle, données personnelles et cookies." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://belvedere65.com/mentions-legales.html" />
+  <meta name="theme-color" content="#0A0A0B" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="favicon-16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#C8A96A" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+:root{
+  --void:#08080A;--night:#0E0E11;--coal:#141418;
+  --line:rgba(255,255,255,.09);--line-strong:rgba(255,255,255,.16);
+  --gold:#C8A96A;--white:#F6F3ED;--text:#C8C4BC;--muted:#85817A;
+  --display:'Marcellus',Georgia,serif;--sans:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-weight:300;font-size:16.5px;line-height:1.85;color:var(--text);background:var(--void);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--void)}
+
+.topbar{background:var(--void);border-bottom:1px solid var(--line);padding:1.2rem 0}
+.wrap{width:min(100% - 2.5rem,860px);margin-inline:auto}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar img{height:42px;width:auto;transition:opacity .35s var(--ease)}
+.topbar a:hover img{opacity:.75}
+.back{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);transition:color .3s var(--ease);white-space:nowrap}
+.back:hover{color:var(--gold)}
+.back svg{width:15px;height:15px}
+
+main{padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.5rem,7vw,6rem)}
+.card{background:var(--night);border:1px solid var(--line);padding:clamp(1.75rem,4.5vw,3.5rem)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3rem);color:var(--white);line-height:1.15;letter-spacing:.04em}
+.updated{margin-top:.75rem;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(1.25rem,2.6vw,1.6rem);color:var(--gold);letter-spacing:.04em;margin:2.75rem 0 1.1rem;padding-top:2rem;border-top:1px solid var(--line)}
+h2:first-of-type{margin-top:2.25rem}
+p{margin-bottom:.95rem}
+p:last-child{margin-bottom:0}
+dl{display:grid;grid-template-columns:auto 1fr;gap:.7rem 2rem}
+dt{font-size:.63rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);padding-top:.45rem;line-height:1.6}
+dd{color:var(--white)}
+@media (max-width:560px){
+  dl{grid-template-columns:1fr;gap:.1rem}
+  dt{padding-top:1rem}
+}
+a.link{color:var(--gold);border-bottom:1px solid var(--line-strong);transition:border-color .3s var(--ease)}
+a.link:hover{border-color:var(--gold)}
+
+.site-footer{background:var(--void);border-top:1px solid var(--line);color:var(--muted);padding:2.25rem 0;font-size:.78rem;letter-spacing:.06em}
+.site-footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:center}
+.site-footer a{transition:color .3s var(--ease)}
+.site-footer a:hover{color:var(--gold)}
+@media (max-width:560px){.site-footer .wrap{justify-content:center;text-align:center}}
+  </style>
 </head>
 <body>
 
-  <div class="container" style="padding: 40px; max-width: 800px; margin: auto;">
-    <h1>Mentions légales</h1>
+  <header class="topbar">
+    <div class="wrap">
+      <a href="index.html" aria-label="Le Belvédère du Domaine – accueil">
+        <img src="imagesdomaine/logo-blanc.png" alt="Le Belvédère du Domaine" width="824" height="336" />
+      </a>
+      <a class="back" href="index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 19 8 12l7-7"/></svg>
+        Retour au site
+      </a>
+    </div>
+  </header>
 
-    <h2>Éditeur du site</h2>
-    <p>
-      Nom : Jeremy Caza<br>
-      Fonction : Créateur et administrateur du site<br>
-      Contact : caza.comm@gmail.com
-    </p>
+  <main>
+    <div class="wrap">
+      <article class="card">
+        <h1>Mentions légales</h1>
+        <p class="updated">Dernière mise à jour : août 2026</p>
 
-    <h2>Propriétaire du domaine</h2>
-    <p>
-      Raison sociale : LE BELVEDERE<br>
-      Forme juridique : SASU - Société par actions simplifiée unipersonnelle<br>
-      SIRET : 845 391 804 00018<br>
-      Numéro de TVA intracommunautaire : FR38845391804<br>
-      Capital social : 3 000,00 €<br>
-      Siège social : 2 chemin de la Lande, 65190 Tournay, France<br>
-      Activité : Autres activités récréatives et de loisirs (code APE 93.29Z)<br>
-      RCS : 845 391 804 R.C.S. Tarbes<br>
-      Date de création : 07/01/2019<br>
-      Dirigeant : CORROYER INVEST
-    </p>
+        <h2>Éditeur du site</h2>
+        <dl>
+          <dt>Nom</dt><dd>Jeremy Caza</dd>
+          <dt>Fonction</dt><dd>Créateur et administrateur du site</dd>
+          <dt>Contact</dt><dd><a class="link" href="mailto:caza.comm@gmail.com">caza.comm@gmail.com</a></dd>
+        </dl>
 
-    <h2>Hébergement du site</h2>
-    <p>
-      Hébergeur : GitHub Pages<br>
-      Adresse : GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>
-      Site : <a href="https://pages.github.com" target="_blank">https://pages.github.com</a>
-    </p>
+        <h2>Propriétaire du domaine</h2>
+        <dl>
+          <dt>Raison sociale</dt><dd>LE BELVEDERE</dd>
+          <dt>Forme juridique</dt><dd>SASU — Société par actions simplifiée unipersonnelle</dd>
+          <dt>SIRET</dt><dd>845 391 804 00018</dd>
+          <dt>TVA intracom.</dt><dd>FR38845391804</dd>
+          <dt>Capital social</dt><dd>3 000,00 €</dd>
+          <dt>Siège social</dt><dd>2 chemin de la Lande, 65190 Tournay, France</dd>
+          <dt>Activité</dt><dd>Autres activités récréatives et de loisirs (code APE 93.29Z)</dd>
+          <dt>RCS</dt><dd>845 391 804 R.C.S. Tarbes</dd>
+          <dt>Création</dt><dd>07/01/2019</dd>
+          <dt>Dirigeant</dt><dd>CORROYER INVEST</dd>
+          <dt>Téléphone</dt><dd><a class="link" href="tel:+33637210400">06 37 21 04 00</a></dd>
+          <dt>E-mail</dt><dd><a class="link" href="mailto:belvederedu65@gmail.com">belvederedu65@gmail.com</a></dd>
+        </dl>
 
-    <h2>Propriété intellectuelle</h2>
-    <p>
-      L’ensemble du contenu présent sur ce site (textes, images, photographies, vidéos, logos, etc.) est la propriété exclusive de LE BELVEDERE ou de ses partenaires. Toute reproduction ou utilisation sans autorisation écrite est strictement interdite.
-    </p>
+        <h2>Hébergement du site</h2>
+        <dl>
+          <dt>Hébergeur</dt><dd>GitHub Pages — GitHub Inc.</dd>
+          <dt>Adresse</dt><dd>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</dd>
+          <dt>Site</dt><dd><a class="link" href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></dd>
+        </dl>
 
-    <h2>Données personnelles</h2>
-    <p>
-      Ce site peut collecter des données personnelles via un formulaire de contact. Ces données sont uniquement destinées à LE BELVEDERE et ne seront jamais cédées à des tiers. Conformément au RGPD, vous pouvez demander la consultation, la modification ou la suppression de vos données à tout moment en envoyant un mail à : [adresse e-mail à insérer].
-    </p>
+        <h2>Propriété intellectuelle</h2>
+        <p>L'ensemble du contenu présent sur ce site (textes, images, photographies, vidéos, logos, etc.) est la propriété exclusive de LE BELVEDERE ou de ses partenaires. Toute reproduction ou utilisation sans autorisation écrite est strictement interdite.</p>
 
-    <h2>Cookies</h2>
-    <p>
-      Ce site ne dépose pas de cookies à des fins de suivi ou de publicité. Seuls des cookies techniques ou liés à l’affichage peuvent être utilisés pour améliorer votre expérience utilisateur.
-    </p>
-  </div>
+        <h2>Données personnelles</h2>
+        <p>Le formulaire de demande de devis présent sur ce site collecte les informations que vous y saisissez : nom et prénom, adresse e-mail, numéro de téléphone (facultatif), type d'événement, date envisagée, nombre d'invités et contenu de votre message.</p>
+        <p><strong>Finalité :</strong> ces données servent uniquement à traiter votre demande et à vous répondre. <strong>Base légale :</strong> votre consentement, matérialisé par l'envoi du formulaire. <strong>Durée de conservation :</strong> trois ans à compter du dernier contact. Elles ne font l'objet d'aucune prospection automatisée et ne sont jamais cédées ni vendues à des tiers.</p>
+        <p><strong>Sous-traitant :</strong> l'acheminement des messages est assuré par <a class="link" href="https://web3forms.com/privacy" target="_blank" rel="noopener">Web3Forms</a>, qui transmet le contenu du formulaire par e-mail à LE BELVEDERE sans le conserver de façon durable.</p>
+        <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur les données vous concernant. Pour l'exercer, écrivez à <a class="link" href="mailto:belvederedu65@gmail.com">belvederedu65@gmail.com</a>. Vous pouvez également introduire une réclamation auprès de la <a class="link" href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.</p>
 
+        <h2>Cookies</h2>
+        <p>Ce site ne dépose aucun cookie de suivi ni de publicité, et n'utilise aucun outil de mesure d'audience. La carte Google Maps et la visite virtuelle 360° sont intégrées depuis des services tiers (Google et Matterport), susceptibles de déposer leurs propres cookies lorsque vous interagissez avec eux. Il en va de même pour les vidéos Instagram affichées sur la page d'accueil (Meta).</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="year"></span> Le Belvédère du Domaine — Tous droits réservés.</p>
+      <p><a href="index.html">Retour à l'accueil</a> <span aria-hidden="true">·</span> <a href="https://caza-comm.fr" target="_blank" rel="noopener">Réalisé par <b>CAZA COMM</b></a></p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
