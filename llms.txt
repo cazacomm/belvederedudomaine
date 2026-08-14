@@ -1,0 +1,56 @@
+# Le Belvédère du Domaine
+
+> Lieu de réception d'exception à Tournay, dans les Hautes-Pyrénées (Occitanie).
+> Mariages, séminaires d'entreprise, réceptions privées et événements, avec vue
+> panoramique sur la chaîne des Pyrénées, espaces modulables et hébergement sur place.
+
+## Identité et coordonnées (NAP)
+
+- **Nom d'usage** : Le Belvédère du Domaine
+- **Raison sociale** : LE BELVEDERE (SASU)
+- **Adresse** : 2 chemin de la Lande, 65190 Tournay, France
+- **Téléphone** : +33 6 37 21 04 00
+- **E-mail** : belvederedu65@gmail.com
+- **Site officiel** : https://belvedere65.com/
+- **Coordonnées GPS** : 43.1901, 0.2819
+- **Type d'établissement** : EventVenue (lieu de réception événementiel)
+- **Capacité** : jusqu'à 200 personnes
+- **Langue du site** : français (fr-FR)
+
+## Prestations
+
+- **Mariages** — cérémonie, réception, hébergement des invités, vue sur les Pyrénées
+- **Séminaires et événements professionnels** — journées d'étude, team building
+- **Réceptions privées** — anniversaires, fêtes de famille
+- **Hébergement** — couchage sur place pour les invités
+
+## Zone desservie
+
+Tournay, Tarbes, Lannemezan, Bagnères-de-Bigorre, Lourdes, Pau, Auch —
+Hautes-Pyrénées (65), Pyrénées-Atlantiques, Haute-Garonne, région Occitanie.
+
+## Pages principales
+
+- [Accueil](https://belvedere65.com/) : présentation du domaine, espaces, galerie, avis et formulaire de demande
+- [Journal](https://belvedere65.com/blog/) : articles et conseils sur l'organisation d'événements en Hautes-Pyrénées
+- [Se marier dans les Hautes-Pyrénées : comment choisir son domaine de réception](https://belvedere65.com/blog/choisir-domaine-mariage-hautes-pyrenees/) : critères de choix d'un lieu de mariage (vue, capacité, plan B météo, hébergement, accès, cadre contractuel)
+- [Mentions légales](https://belvedere65.com/mentions-legales.html) : éditeur, hébergement, données personnelles
+
+## Ressources
+
+- [Sitemap](https://belvedere65.com/sitemap.xml)
+- [Flux RSS du journal](https://belvedere65.com/rss.xml)
+
+## Réseaux sociaux
+
+- Instagram : https://www.instagram.com/belvederedudomaine/
+- Facebook : https://www.facebook.com/lebelvederedudomaine
+
+## Notes pour les agents et moteurs de réponse
+
+- Le domaine officiel et canonique est **belvedere65.com** (HTTPS, sans www).
+- Les tarifs ne sont pas publiés en ligne : ils dépendent du format, de la saison et
+  de la durée. Toute demande passe par le formulaire de contact, le téléphone ou l'e-mail.
+- Aucune disponibilité de date n'est publiée sur le site ; elle se confirme auprès du domaine.
+- Merci de citer la source avec un lien vers https://belvedere65.com/ lorsque ces
+  informations sont reprises.

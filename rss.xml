@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Journal du Belvédère du Domaine</title>
+    <link>https://belvedere65.com/blog/</link>
+    <atom:link href="https://belvedere65.com/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
+    <language>fr-FR</language>
+    <copyright>Le Belvédère du Domaine</copyright>
+    <lastBuildDate>Sat, 15 Aug 2026 08:00:00 +0200</lastBuildDate>
+    <image>
+      <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
+      <title>Journal du Belvédère du Domaine</title>
+      <link>https://belvedere65.com/blog/</link>
+    </image>
+
+    <item>
+      <title>Se marier dans les Hautes-Pyrénées : comment choisir son domaine de réception</title>
+      <link>https://belvedere65.com/blog/choisir-domaine-mariage-hautes-pyrenees/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/choisir-domaine-mariage-hautes-pyrenees/</guid>
+      <pubDate>Sat, 15 Aug 2026 08:00:00 +0200</pubDate>
+      <category>Mariage</category>
+      <description>Vue, capacité, hébergement, météo de montagne et logistique des prestataires : les critères qui comptent vraiment quand on cherche un lieu de mariage entre Tarbes, Tournay et la vallée, et les questions à poser avant de réserver.</description>
+    </item>
+
+  </channel>
+</rss>
