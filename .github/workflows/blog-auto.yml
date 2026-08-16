@@ -1,0 +1,82 @@
+name: Blog — article automatique
+
+on:
+  schedule:
+    # Tous les lundis à 09:00 UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Forcer un numéro de sujet (voir BLOG_WORKFLOW.md §7). Vide = prochain non traité."
+        required: false
+        default: ""
+      dry_run:
+        description: "Générer sans écrire ni committer"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blog-auto
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --upgrade openai
+
+      - name: Generate article
+        id: generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set +e
+          ARGS=""
+          if [ -n "${{ inputs.topic }}" ]; then ARGS="$ARGS --topic ${{ inputs.topic }}"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python3 scripts/generate-article.py $ARGS
+          CODE=$?
+          set -e
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          case "$CODE" in
+            0)  echo "✅ Article généré." ;;
+            78) echo "ℹ️ Aucun nouveau sujet à publier — arrêt propre, rien à committer."
+                echo "skip=true" >> "$GITHUB_OUTPUT" ;;
+            *)  echo "❌ Échec de la génération (code $CODE)." >&2; exit "$CODE" ;;
+          esac
+
+      - name: Commit & push
+        if: steps.generate.outputs.code == '0' && inputs.dry_run != true
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "ℹ️ Aucune modification à committer."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/ sitemap.xml rss.xml
+          git commit -m "chore(blog): article auto du $(date -u +%Y-%m-%d)"
+          git push origin HEAD:${{ github.ref_name }}
+          echo "✅ Publié — GitHub Pages met le site à jour dans une à deux minutes."
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Blog automatique" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Code de sortie du script : \`${{ steps.generate.outputs.code }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 0 = article publié · 78 = aucun sujet restant · autre = erreur" >> "$GITHUB_STEP_SUMMARY"
