@@ -1,0 +1,64 @@
+{
+  "site_name": "Le Belvédère du Domaine",
+  "site_url": "https://belvedere65.com",
+  "sector": "lieu de réception événementiel (mariages, séminaires, réceptions privées, hébergement)",
+  "location": "Tournay, Hautes-Pyrénées",
+  "geo_keywords": [
+    "Tournay",
+    "Hautes-Pyrénées",
+    "65190",
+    "Tarbes",
+    "Lannemezan",
+    "Bagnères-de-Bigorre",
+    "Lourdes",
+    "Pau",
+    "Auch",
+    "Occitanie",
+    "piémont pyrénéen",
+    "chaîne des Pyrénées"
+  ],
+  "tone": "expert-conseil, factuel, chaleureux, sans jargon inutile",
+  "author": "Le Belvédère du Domaine",
+  "target_word_count": 1300,
+  "faq_questions_count": 5,
+  "language": "fr",
+
+  "nap": {
+    "name": "Le Belvédère du Domaine",
+    "legal_name": "LE BELVEDERE",
+    "street": "2 Chemin de la Lande",
+    "postal_code": "65190",
+    "city": "Tournay",
+    "region": "Occitanie",
+    "country": "FR",
+    "phone_display": "06 37 21 04 00",
+    "phone_e164": "+33637210400",
+    "email": "belvederedu65@gmail.com",
+    "latitude": 43.1901,
+    "longitude": 0.2819
+  },
+
+  "facts_allowed": [
+    "capacité jusqu'à 200 personnes",
+    "hébergement sur place",
+    "parking privé",
+    "espaces modulables",
+    "espaces extérieurs",
+    "vue panoramique sur les Pyrénées",
+    "visite virtuelle 360°"
+  ],
+
+  "openai": {
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "max_tokens": 6000
+  },
+
+  "paths": {
+    "blog_dir": "blog",
+    "blog_index": "blog/index.html",
+    "workflow_doc": "BLOG_WORKFLOW.md",
+    "sitemap": "sitemap.xml",
+    "rss": "rss.xml"
+  }
+}
