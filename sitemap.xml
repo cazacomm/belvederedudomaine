@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://belvedere65.com/blog/</loc>
-    <lastmod>2026-08-15</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://belvedere65.com/blog/organiser-seminaire-hautes-pyrenees/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://belvedere65.com/blog/choisir-domaine-mariage-hautes-pyrenees/</loc>
