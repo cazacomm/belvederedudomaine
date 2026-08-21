@@ -1,22 +1,22 @@
-# Automatisation du blog
+# Blog automatique — Le Belvédère du Domaine
 
-Un article est généré et publié **chaque lundi à 09:00 UTC** (11h l'été en France,
-10h l'hiver) par le workflow `.github/workflows/blog-auto.yml`, sans intervention.
+Un article est généré et publié **chaque lundi à 09:00 UTC** (11h en heure d'été
+française, 10h en hiver) par `.github/workflows/blog-auto.yml`, sans intervention.
 
-## 1. Ajouter la clé API (à faire une seule fois)
+## 1. Ajouter la clé API (une seule fois)
 
 1. Créer une clé sur <https://platform.openai.com/api-keys>
-2. Sur GitHub : **Settings → Secrets and variables → Actions → New repository secret**
+2. GitHub → **Settings → Secrets and variables → Actions → New repository secret**
 3. Nom : `OPENAI_API_KEY` — Valeur : la clé (`sk-…`)
 
-Vérifier aussi, dans **Settings → Actions → General → Workflow permissions**, que
-l'option **Read and write permissions** est active : le workflow doit pouvoir pousser
-son commit.
+Vérifier aussi **Settings → Actions → General → Workflow permissions** :
+**Read and write permissions** doit être actif, sinon le workflow ne peut pas pousser.
 
 ## 2. Lancer manuellement
 
-**Depuis GitHub** — onglet *Actions* → *Blog — article automatique* → *Run workflow*.
-Deux options : `topic` (forcer un numéro de sujet) et `dry_run` (générer sans publier).
+**Depuis GitHub** — onglet *Actions* → *Blog auto — Le Belvédère du Domaine* →
+*Run workflow*. Deux champs : `dry_run` (simuler sans publier) et `rewrite`
+(slug d'un article existant à régénérer).
 
 **En local :**
 
@@ -24,61 +24,121 @@ Deux options : `topic` (forcer un numéro de sujet) et `dry_run` (générer sans
 export OPENAI_API_KEY="sk-…"
 pip install openai
 
-python3 scripts/generate-article.py --dry-run     # génère et affiche, n'écrit rien
-python3 scripts/generate-article.py               # génère et écrit les fichiers
-python3 scripts/generate-article.py --topic 3     # force le sujet n°3
+python3 scripts/generate-article.py --dry-run --mock   # assemblage seul, sans API
+python3 scripts/generate-article.py --dry-run          # génère et affiche, n'écrit rien
+python3 scripts/generate-article.py                    # génère et publie
+python3 scripts/generate-article.py --rewrite <slug>   # régénère un article existant
 ```
 
 Codes de sortie : `0` succès · `78` aucun nouveau sujet (arrêt propre) · `1` erreur.
 
-## 3. Ce que fait le script
+## 3. Le principe : le modèle n'écrit plus de HTML
 
-1. Lit `blog-config.json` (identité, NAP, faits autorisés, réglages du modèle).
-2. Extrait les 12 sujets du tableau §7 de `BLOG_WORKFLOW.md`.
-3. Scanne `blog/*/index.html`, relève les marqueurs `<!-- belvedere65-topic: N -->`
-   et retient le **premier sujet non traité**, dans l'ordre.
-4. **Relit le gabarit depuis l'article publié le plus ancien** — aucun template n'est
-   dupliqué dans le script. En-tête, pied de page, CSS et structure restent identiques.
-5. Appelle OpenAI (`gpt-4o-mini`, `temperature` 0.7, réponse JSON stricte).
-6. Écrit `blog/<slug>/index.html`, ajoute la carte dans `blog/index.html`, met à jour
-   `sitemap.xml` et `rss.xml`.
+C'est le cœur du fonctionnement, et ce qui change tout par rapport à la version
+précédente.
 
-### Garde-fous
+Le modèle ne reçoit plus de gabarit à recopier. Il rend un **JSON éditorial**
+(titre, chapô, sections `h2`/`h3`, paragraphes, listes, FAQ) et **le script
+assemble la page** : `<head>`, meta, canonical, Open Graph, Twitter Card, les
+trois blocs JSON-LD, le fil d'Ariane, le marqueur d'idempotence, le header, le
+footer et le bloc CTA viennent du gabarit relu et du script.
 
-- **Idempotence** : marqueur de sujet dans chaque article ; si le dossier du slug
-  existe déjà, arrêt en code 78 sans rien toucher ; les insertions dans
-  `blog/index.html`, `sitemap.xml` et `rss.xml` sont ignorées si l'URL y figure déjà.
-- **Contrôles avant écriture** : un seul `<h1>`, JSON-LD valide, canonical correct,
-  `meta description` ramenée sous 155 caractères, 5 questions de FAQ, ≥ 4 sections.
-  Un seul échec ⇒ aucun fichier n'est écrit et le workflow ne committe rien.
-- **Règles éditoriales** de `BLOG_WORKFLOW.md` injectées dans le prompt : interdiction
-  d'inventer prix, chiffres, noms, dates et réglementations ; seuls les faits listés
-  dans `facts_allowed` (blog-config.json) sont autorisés.
-- Aucun article ni aucune page existante n'est jamais modifié.
+Conséquence directe sur le volume : auparavant les deux tiers des tokens de sortie
+partaient en balisage, ce qui plafonnait le corps rédigé autour de **400 mots**
+malgré une consigne de 1300. Les tokens vont désormais entièrement au texte.
 
-## 4. Coût estimé
+Conséquence sur la sécurité : le modèle ne fournit que du texte brut, échappé à
+l'assemblage. Seuls `**gras**` et `[libellé](/chemin)` sont interprétés, et les
+liens sont restreints aux chemins commençant par `/` — un lien externe est
+structurellement impossible.
 
-Avec `gpt-4o-mini` : environ **1 500 jetons d'entrée** et **3 000 jetons de sortie**
-par article.
+### Le gabarit reste relu, jamais dupliqué
+
+`split_template()` découpe l'article de référence
+(`reference_article_slug` dans `blog-config.json`) selon les conventions HTML de
+**ce site**, qui diffèrent de celles d'autres sites du même pipeline :
+
+| Élément | Convention de ce site |
+|---|---|
+| Début des JSON-LD | première balise `<script type="application/ld+json">` (pas de commentaire `<!-- Article -->`) |
+| Balise principale | `<main id="contenu">` (et non `<main>`) |
+| Fil d'Ariane | `<nav class="breadcrumb">` situé **avant** le `<main>`, donc réécrit dans le morceau « header » |
+| Bloc CTA | `<div class="cta-box">` contenant un `<div class="cta-actions">` imbriqué — extrait en comptant les balises, pas par regex |
+| FAQ | `<details>` / `<summary>` (et non des `<p class="faq-q">`) |
+| Liste d'articles | `<div class="post-list">` contenant des `<a class="post-card">` |
+
+Si le gabarit évolue (nouveau footer, nouvelle police), les articles suivants
+suivent automatiquement.
+
+## 4. Rattrapage et budget d'appels
+
+Le script valide le contenu reçu : volume, nombre de questions, longueur du
+`title` et de la description, maillage interne. **Toute erreur corrigeable par le
+modèle** déclenche une reprise — pas seulement un volume insuffisant.
+
+- Plafond : **3 appels** par article (`MAX_CALLS`).
+- Chaque reprise repart de la **meilleure copie obtenue**, pas de la dernière :
+  le modèle développe un texte déjà long au lieu de repartir d'un plus court.
+- Si la nouvelle copie n'est pas meilleure, l'ancienne est conservée.
+- Si des erreurs subsistent au bout des 3 appels : **aucun fichier n'est écrit**,
+  code 1, le workflow ne committe rien.
+
+Cible : **1200–1500 mots** pour le corps hors FAQ (`PROMPT_MIN/MAX_WORDS`),
+avec des bornes de validation plus larges (900–1900) pour ne pas rejeter une
+bonne copie à 20 mots près.
+
+## 5. Idempotence et garde-fous
+
+- Marqueur `<!-- belvedere65-topic: N -->` dans chaque article généré.
+- Slug **déterministe** : le même titre produit toujours le même slug.
+- Si le dossier du slug existe déjà → code 78, rien n'est écrasé
+  (`--rewrite` pour forcer).
+- `blog/index.html`, `sitemap.xml`, `rss.xml` et `llms.txt` sont mis à jour de
+  façon idempotente : une URL déjà présente n'est jamais dupliquée.
+- Un sujet marqué « publié » dans le tableau de `BLOG_WORKFLOW.md` est ignoré —
+  c'est ainsi que l'article écrit à la main, antérieur au marqueur, reste exclu.
+- Garde-fous éditoriaux injectés dans le prompt : interdiction d'inventer prix,
+  chiffres, noms de clients, dates de fondation, réglementations et adresses.
+  Les seuls faits chiffrés autorisés sont ceux listés dans `facts`
+  (`blog-config.json`).
+- Contrôles d'assemblage avant écriture : DOCTYPE, `</html>`, un seul `<h1>`,
+  canonical exact, `<main>` équilibré, 3 blocs JSON-LD valides, 5 questions de
+  FAQ, et **parité stricte entre la FAQ affichée et le `FAQPage`**.
+
+## 6. Configuration
+
+`blog-config.json` porte 19 clés obligatoires, vérifiées au démarrage
+(`REQUIRED_KEYS`) — le script s'arrête avec un message clair si l'une manque :
+
+`site_name`, `site_url`, `sector`, `location`, `geo_keywords`, `tone`, `author`,
+`target_word_count`, `faq_questions_count`, `language`, `model`, `temperature`,
+`topic_marker_prefix`, `og_image`, `logo_path`, `default_article_section`,
+`internal_link_targets`, `reference_article_slug`, `facts`.
+
+Le bloc `nap` (facultatif) alimente le `publisher` des JSON-LD.
+
+## 7. Coût
+
+Avec `gpt-4o` : environ 2 500 jetons d'entrée et 4 000 de sortie par appel.
 
 | | Par article | Par an (52 lundis) |
 |---|---|---|
-| Coût OpenAI | **≈ 0,002 $** (~0,002 €) | **≈ 0,10 $** |
-| Minutes GitHub Actions | ~1 min | ~52 min (gratuit sur dépôt public) |
+| 1 appel (cas courant) | ≈ 0,046 $ | ≈ 2,40 $ |
+| 3 appels (plafond) | ≈ 0,14 $ | ≈ 7,30 $ |
 
-Le coût est donc négligeable. Ordre de grandeur indicatif : vérifier les tarifs en
-vigueur sur <https://openai.com/api/pricing/>.
+Soit quelques euros par an dans le pire cas. Ordre de grandeur indicatif :
+tarifs à jour sur <https://openai.com/api/pricing/>.
 
-À noter : la réserve de sujets couvre **12 semaines**. Passé ce délai, le workflow
-sortira en code 78 chaque lundi sans rien publier — il suffit d'ajouter des lignes
-au tableau §7 de `BLOG_WORKFLOW.md` pour relancer la production.
+À noter : la réserve de sujets couvre les lundis restants du tableau §7 de
+`BLOG_WORKFLOW.md`. Une fois épuisée, le workflow sort en code 78 chaque lundi
+sans rien publier — il suffit d'ajouter des lignes au tableau.
 
-## 5. Relire avant que ça parte en ligne
+## 8. Relecture
 
-Le workflow publie sans validation humaine. Deux réflexes utiles :
+Le workflow publie sans validation humaine. Deux réflexes :
 
-- s'abonner aux notifications d'échec du workflow (Actions → *Watch*) ;
-- relire l'article du lundi dans la journée : le contenu est cadré par le prompt,
-  mais un modèle reste un modèle. En cas de problème, `git revert` du commit
-  `chore(blog): article auto du …` suffit à retirer l'article et à remettre
-  `sitemap.xml`, `rss.xml` et la liste d'articles dans leur état antérieur.
+- s'abonner aux notifications d'échec (Actions → *Watch*) ;
+- relire l'article du lundi dans la journée. En cas de problème,
+  `git revert` du commit `chore(blog): article auto du …` retire l'article **et**
+  les mises à jour de sitemap, RSS, liste et `llms.txt` en une commande ;
+  `--rewrite <slug>` permet de le régénérer sans changer d'URL.

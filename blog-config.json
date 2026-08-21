@@ -1,27 +1,57 @@
 {
   "site_name": "Le Belvédère du Domaine",
   "site_url": "https://belvedere65.com",
-  "sector": "lieu de réception événementiel (mariages, séminaires, réceptions privées, hébergement)",
+  "sector": "lieu de réception événementiel : mariages, séminaires, réceptions privées et hébergement",
   "location": "Tournay, Hautes-Pyrénées",
   "geo_keywords": [
     "Tournay",
-    "Hautes-Pyrénées",
-    "65190",
     "Tarbes",
     "Lannemezan",
     "Bagnères-de-Bigorre",
     "Lourdes",
     "Pau",
     "Auch",
+    "Hautes-Pyrénées",
+    "65190",
     "Occitanie",
     "piémont pyrénéen",
-    "chaîne des Pyrénées"
+    "chaîne des Pyrénées",
+    "domaine de réception",
+    "lieu de mariage",
+    "séminaire d'entreprise",
+    "vue panoramique"
   ],
   "tone": "expert-conseil, factuel, chaleureux, sans jargon inutile",
   "author": "Le Belvédère du Domaine",
   "target_word_count": 1300,
   "faq_questions_count": 5,
   "language": "fr",
+  "model": "gpt-4o",
+  "temperature": 0.7,
+  "topic_marker_prefix": "belvedere65-topic",
+  "og_image": "/og-belvedere-1200x630.jpg",
+  "logo_path": "/imagesdomaine/logo.png",
+  "default_article_section": "Événements",
+  "internal_link_targets": [
+    "/#espaces",
+    "/#evenements",
+    "/#contact"
+  ],
+  "reference_article_slug": "choisir-domaine-mariage-hautes-pyrenees",
+  "facts": [
+    "Le Belvédère du Domaine, 2 chemin de la Lande, 65190 Tournay (Hautes-Pyrénées, Occitanie).",
+    "Téléphone : 06 37 21 04 00. E-mail : belvederedu65@gmail.com. Site : https://belvedere65.com/",
+    "Capacité : jusqu'à 200 personnes, selon la configuration retenue.",
+    "Hébergement sur place pour les invités.",
+    "Parking privé sur le domaine.",
+    "Espaces intérieurs modulables et espaces extérieurs.",
+    "Vue panoramique sur la chaîne des Pyrénées.",
+    "Visite virtuelle 360° accessible depuis le site.",
+    "Prestations : mariages, séminaires et événements professionnels, réceptions privées (anniversaires, fêtes de famille), hébergement.",
+    "Zone desservie : Tournay, Tarbes, Lannemezan, Bagnères-de-Bigorre, Lourdes, Pau, Auch et plus largement les Hautes-Pyrénées et l'Occitanie.",
+    "Tournay se situe sur l'axe reliant Tarbes à Lannemezan.",
+    "Les tarifs ne sont pas publiés : ils dépendent du format, de la saison et de la durée, et se demandent au domaine."
+  ],
 
   "nap": {
     "name": "Le Belvédère du Domaine",
@@ -36,29 +66,5 @@
     "email": "belvederedu65@gmail.com",
     "latitude": 43.1901,
     "longitude": 0.2819
-  },
-
-  "facts_allowed": [
-    "capacité jusqu'à 200 personnes",
-    "hébergement sur place",
-    "parking privé",
-    "espaces modulables",
-    "espaces extérieurs",
-    "vue panoramique sur les Pyrénées",
-    "visite virtuelle 360°"
-  ],
-
-  "openai": {
-    "model": "gpt-4o-mini",
-    "temperature": 0.7,
-    "max_tokens": 6000
-  },
-
-  "paths": {
-    "blog_dir": "blog",
-    "blog_index": "blog/index.html",
-    "workflow_doc": "BLOG_WORKFLOW.md",
-    "sitemap": "sitemap.xml",
-    "rss": "rss.xml"
   }
 }
