@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 17 Aug 2026 11:35:31 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Préparer un mariage en extérieur avec un plan B</title>
+      <link>https://belvedere65.com/blog/mariage-exterieur-pied-pyrenees-construire-plan-b/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/mariage-exterieur-pied-pyrenees-construire-plan-b/</guid>
+      <pubDate>Fri, 21 Aug 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Organisez un mariage en extérieur avec un plan B dans les Hautes-Pyrénées pour parer à toute éventualité météorologique.</description>
+    </item>
 
     <item>
       <title>Organiser un séminaire d'entreprise en Hautes-Pyrénées : le guide pratique</title>
