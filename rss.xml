@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 31 Aug 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Rétroplanning de mariage en 12 étapes clés</title>
+      <link>https://belvedere65.com/blog/retroplanning-mariage-12-etapes-lieu-jour-j/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/retroplanning-mariage-12-etapes-lieu-jour-j/</guid>
+      <pubDate>Mon, 07 Sep 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez les 12 étapes essentielles pour organiser votre mariage, du choix du lieu à la journée parfaite.</description>
+    </item>
 
     <item>
       <title>Choisir le lieu idéal pour votre mariage près de Tarbes</title>
