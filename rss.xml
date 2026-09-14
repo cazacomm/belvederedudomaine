@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 07 Sep 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Optimiser votre team building au piémont pyrénéen</title>
+      <link>https://belvedere65.com/blog/team-building-montagne-fonctionne/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/team-building-montagne-fonctionne/</guid>
+      <pubDate>Mon, 14 Sep 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez comment organiser un team building réussi dans le cadre unique du piémont pyrénéen, à proximité de Tournay.</description>
+    </item>
 
     <item>
       <title>Rétroplanning de mariage en 12 étapes clés</title>

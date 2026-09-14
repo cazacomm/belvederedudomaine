@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://belvedere65.com/blog/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,6 +51,12 @@
   <url>
     <loc>https://belvedere65.com/blog/retroplanning-mariage-12-etapes-lieu-jour-j/</loc>
     <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://belvedere65.com/blog/team-building-montagne-fonctionne/</loc>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
