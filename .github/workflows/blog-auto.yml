@@ -45,6 +45,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install openai
 
+      - name: Identité git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Réapprovisionnement des sujets
+        id: topics
+        if: inputs.dry_run != true && inputs.rewrite == ''
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set +e
+          python scripts/generate-article.py --topics-only
+          code=$?
+          set -e
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" = "0" ]; then
+            echo "Réserve de sujets vérifiée."
+          else
+            echo "::warning::Réapprovisionnement des sujets en échec (code $code) — on poursuit avec la réserve existante."
+          fi
+
+      # Poussé immédiatement : si la rédaction échoue juste après, les sujets
+      # déjà produits sont acquis et ne seront pas régénérés au prochain run.
+      - name: Push des nouveaux sujets
+        if: inputs.dry_run != true && inputs.rewrite == ''
+        run: |
+          if [ -n "$(git log origin/${GITHUB_REF_NAME}..HEAD --oneline)" ]; then
+            git push origin HEAD:${GITHUB_REF_NAME}
+            echo "::notice::Nouveaux sujets poussés."
+          else
+            echo "::notice::Aucun nouveau sujet à pousser."
+          fi
+
       - name: Génération de l'article
         id: generate
         env:
@@ -76,8 +110,6 @@ jobs:
             echo "::notice::Aucune modification à committer."
             exit 0
           fi
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if [ -n "${{ inputs.rewrite }}" ]; then
             msg="chore(blog): reecriture de ${{ inputs.rewrite }}"
@@ -95,6 +127,7 @@ jobs:
             echo "### Blog auto — Le Belvédère du Domaine"
             echo ""
             echo "- Code de sortie du script : \`${{ steps.generate.outputs.exit_code }}\`"
+            echo "- Réapprovisionnement des sujets : \`${{ steps.topics.outputs.exit_code || '(ignoré)' }}\`"
             echo "- Simulation : \`${{ inputs.dry_run || 'false' }}\`"
             echo "- Réécriture : \`${{ inputs.rewrite || '(aucune)' }}\`"
             echo ""

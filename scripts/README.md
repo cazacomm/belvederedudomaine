@@ -28,9 +28,11 @@ python3 scripts/generate-article.py --dry-run --mock   # assemblage seul, sans A
 python3 scripts/generate-article.py --dry-run          # génère et affiche, n'écrit rien
 python3 scripts/generate-article.py                    # génère et publie
 python3 scripts/generate-article.py --rewrite <slug>   # régénère un article existant
+python3 scripts/generate-article.py --topics-only      # regarnit seulement la liste de sujets
 ```
 
 Codes de sortie : `0` succès · `78` aucun nouveau sujet (arrêt propre) · `1` erreur.
+`--topics-only` et `--rewrite` sont incompatibles (erreur explicite).
 
 ## 3. Le principe : le modèle n'écrit plus de HTML
 
@@ -87,7 +89,49 @@ Cible : **1200–1500 mots** pour le corps hors FAQ (`PROMPT_MIN/MAX_WORDS`),
 avec des bornes de validation plus larges (900–1900) pour ne pas rejeter une
 bonne copie à 20 mots près.
 
-## 5. Idempotence et garde-fous
+## 5. Réapprovisionnement automatique des sujets
+
+Le blog ne tombe plus en panne sèche. Avant chaque rédaction, le script compte
+les sujets encore à traiter dans `BLOG_WORKFLOW.md` ; s'il en reste moins de
+**8**, il demande un lot de **40 nouveaux sujets** et les ajoute au tableau.
+
+| Réglage | Valeur | Rôle |
+|---|---|---|
+| `TOPIC_RESERVE_MIN` | 8 | seuil de déclenchement (≈ deux mois d'avance) |
+| `TOPIC_BATCH` | 40 | taille du lot demandé |
+| `TOPIC_MAX_CALLS` | 2 | plafond d'appels pour un réapprovisionnement |
+| `TOPICS_MODEL` | `gpt-4o` | modèle dédié aux sujets, indépendant de la rédaction |
+
+Les sujets sont ancrés sur `sector`, `location`, `geo_keywords` et `facts` de
+`blog-config.json`. La liste des sujets déjà présents est envoyée au modèle pour
+qu'il évite les redites, puis **`dedupe_topics()` filtre sur le slug** — et non
+sur le titre : le slug est la clé d'idempotence (nom du dossier de l'article),
+donc deux titres différents produisant le même slug sont bien un doublon.
+
+### Deux garde-fous qui comptent
+
+**Le comptage et le choix ne peuvent pas diverger.** `topic_is_pending()` est la
+définition unique de « sujet non traité » ; `pending_topics()` (comptage de la
+réserve) et `pick_topic()` (choix du sujet) l'appellent toutes deux. Sans cela,
+on pourrait compter huit sujets disponibles puis n'en trouver aucun à rédiger.
+
+**Les sujets sont poussés avant la rédaction.** Le workflow enchaîne
+réapprovisionnement → push → rédaction → push. Si la rédaction échoue, les
+sujets déjà produits sont acquis et ne seront pas regénérés (ni refacturés) au
+run suivant.
+
+En mode normal, un échec du réapprovisionnement est **journalisé puis ignoré** :
+la publication du jour continue avec la réserve existante, et le workflow le
+signale en `::warning::` sans faire échouer le run. En `--topics-only`,
+l'erreur remonte normalement puisque c'est le cœur du travail.
+
+Le tableau de `BLOG_WORKFLOW.md` est complété **à la fin du tableau**, pas à la
+fin du fichier (un paragraphe le suit), avec une numérotation continue et le
+format local à 4 colonnes `| # | Sujet | Angle / intention | Cible |`. Les
+barres verticales et retours à la ligne présents dans le texte du modèle sont
+neutralisés par `clean_line()` : une cellule ne peut pas casser le tableau.
+
+## 6. Idempotence et garde-fous
 
 - Marqueur `<!-- belvedere65-topic: N -->` dans chaque article généré.
 - Slug **déterministe** : le même titre produit toujours le même slug.
@@ -105,7 +149,7 @@ bonne copie à 20 mots près.
   canonical exact, `<main>` équilibré, 3 blocs JSON-LD valides, 5 questions de
   FAQ, et **parité stricte entre la FAQ affichée et le `FAQPage`**.
 
-## 6. Configuration
+## 7. Configuration
 
 `blog-config.json` porte 19 clés obligatoires, vérifiées au démarrage
 (`REQUIRED_KEYS`) — le script s'arrête avec un message clair si l'une manque :
@@ -117,7 +161,7 @@ bonne copie à 20 mots près.
 
 Le bloc `nap` (facultatif) alimente le `publisher` des JSON-LD.
 
-## 7. Coût
+## 8. Coût
 
 Avec `gpt-4o` : environ 2 500 jetons d'entrée et 4 000 de sortie par appel.
 
@@ -126,14 +170,16 @@ Avec `gpt-4o` : environ 2 500 jetons d'entrée et 4 000 de sortie par appel.
 | 1 appel (cas courant) | ≈ 0,046 $ | ≈ 2,40 $ |
 | 3 appels (plafond) | ≈ 0,14 $ | ≈ 7,30 $ |
 
+Le réapprovisionnement ajoute **≈ 0,05 $ par lot de 40 sujets**, soit environ
+une fois toutes les 32 semaines : négligeable.
+
 Soit quelques euros par an dans le pire cas. Ordre de grandeur indicatif :
 tarifs à jour sur <https://openai.com/api/pricing/>.
 
-À noter : la réserve de sujets couvre les lundis restants du tableau §7 de
-`BLOG_WORKFLOW.md`. Une fois épuisée, le workflow sort en code 78 chaque lundi
-sans rien publier — il suffit d'ajouter des lignes au tableau.
+La réserve de sujets se regarnit désormais toute seule (§5) : il n'y a plus de
+liste à alimenter à la main, et plus d'arrêt en code 78 faute de sujets.
 
-## 8. Relecture
+## 9. Relecture
 
 Le workflow publie sans validation humaine. Deux réflexes :
 
