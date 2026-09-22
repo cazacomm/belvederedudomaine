@@ -354,11 +354,22 @@ section{padding:clamp(80px,10vw,150px) 0;position:relative}
 .space-body h3{margin-bottom:1.3rem}
 .space-body p{color:var(--text);font-size:1.01rem}
 .space:nth-of-type(even) .space-figure{order:2}
+
+/* Mosaïque de 3 photos — même encombrement qu'une photo unique */
+.space-figure.trio{display:grid;grid-template-columns:1.32fr 1fr;grid-template-rows:1fr 1fr;gap:6px;background:transparent}
+.space-figure.trio .tile{position:relative;overflow:hidden;background:var(--slate)}
+.space-figure.trio .tile:first-child{grid-row:span 2}
+.space-figure.trio img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--slow);filter:saturate(.94)}
+/* Le survol agit sur la tuile pointée, pas sur les trois à la fois */
+.space:hover .space-figure.trio img{transform:none}
+.space-figure.trio .tile:hover img{transform:scale(1.05)}
+
 @media (max-width:880px){
   .space{grid-template-columns:1fr;margin-top:3.5rem}
   .space:nth-of-type(even) .space-figure{order:0}
   .space-body{padding:2rem .25rem 0}
   .space-figure{aspect-ratio:16/10}
+  .space-figure.trio{aspect-ratio:4/3;gap:5px}
 }
 .spaces-cta{margin-top:clamp(3rem,6vw,5rem);text-align:center}
 
@@ -690,8 +701,10 @@ button[disabled]{opacity:.5;cursor:progress}
         </article>
 
         <article class="space reveal">
-          <div class="space-figure">
-            <img src="imagesdomaine/web/nouvelphotochambre.jpeg" alt="Une chambre sous charpente dans la maison du domaine" loading="lazy" decoding="async" width="1600" height="1200" />
+          <div class="space-figure trio">
+            <div class="tile"><img src="imagesdomaine/web/chambre2.jpeg" alt="Chambre double de la maison, mur terracotta et fenêtre ouverte sur la campagne" loading="lazy" decoding="async" width="1086" height="1448" /></div>
+            <div class="tile"><img src="imagesdomaine/web/chambre1.jpeg" alt="Grande chambre sous charpente aménagée de plusieurs lits pour les invités" loading="lazy" decoding="async" width="1448" height="1086" /></div>
+            <div class="tile"><img src="imagesdomaine/web/chambre3.jpeg" alt="Chambre familiale sous charpente avec lit double et lit simple" loading="lazy" decoding="async" width="1448" height="1086" /></div>
           </div>
           <div class="space-body">
             <span class="space-num">04</span>
