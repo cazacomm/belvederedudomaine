@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 21 Sep 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Réussir votre réception privée au Belvédère</title>
+      <link>https://belvedere65.com/blog/anniversaire-bapteme-fete-famille-reussir-reception-privee/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/anniversaire-bapteme-fete-famille-reussir-reception-privee/</guid>
+      <pubDate>Mon, 28 Sep 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez comment organiser une réception privée réussie dans les Hautes-Pyrénées avec le Belvédère du Domaine.</description>
+    </item>
 
     <item>
       <title>Quelle saison pour un mariage pyrénéen ?</title>
