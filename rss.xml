@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 05 Oct 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Capturer l'essence d'un mariage face aux Pyrénées</title>
+      <link>https://belvedere65.com/blog/photos-mariage-face-pyrenees-moments-lieux-manquer/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/photos-mariage-face-pyrenees-moments-lieux-manquer/</guid>
+      <pubDate>Mon, 12 Oct 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez comment profiter des vues spectaculaires du Belvédère du Domaine pour vos photos de mariage inoubliables.</description>
+    </item>
 
     <item>
       <title>Les questions clés pour visiter un lieu de réception</title>
