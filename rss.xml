@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 19 Oct 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Rejoindre le Belvédère du Domaine depuis Tarbes</title>
+      <link>https://belvedere65.com/blog/acceder-facilement-belvedere-domaine-depuis-tarbes/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/acceder-facilement-belvedere-domaine-depuis-tarbes/</guid>
+      <pubDate>Mon, 26 Oct 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez comment accéder facilement au Belvédère du Domaine depuis Tarbes pour vos événements.</description>
+    </item>
 
     <item>
       <title>Que faire à Tournay pendant un mariage ?</title>
