@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 02 Nov 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Réussissez votre séminaire en Occitanie</title>
+      <link>https://belvedere65.com/blog/organiser-seminaire-occitanie-logistique-succes/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/organiser-seminaire-occitanie-logistique-succes/</guid>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Guide pratique pour la logistique d'un séminaire en Occitanie : conseils pour un événement réussi.</description>
+    </item>
 
     <item>
       <title>Découvrez les activités autour de Lourdes</title>
