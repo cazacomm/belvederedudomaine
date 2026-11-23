@@ -7,12 +7,21 @@
     <description>Conseils et repères pour organiser un mariage, un séminaire ou une réception à Tournay et dans les Hautes-Pyrénées, par Le Belvédère du Domaine.</description>
     <language>fr-FR</language>
     <copyright>Le Belvédère du Domaine</copyright>
-    <lastBuildDate>Mon, 16 Nov 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0200</lastBuildDate>
     <image>
       <url>https://belvedere65.com/og-belvedere-1200x630.jpg</url>
       <title>Journal du Belvédère du Domaine</title>
       <link>https://belvedere65.com/blog/</link>
     </image>
+
+    <item>
+      <title>Valorisez les produits locaux dans votre menu</title>
+      <link>https://belvedere65.com/blog/integrer-produits-locaux-menu-reception/</link>
+      <guid isPermaLink="true">https://belvedere65.com/blog/integrer-produits-locaux-menu-reception/</guid>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0200</pubDate>
+      <category>Événements</category>
+      <description>Découvrez comment sublimer votre menu de réception avec les produits régionaux des Hautes-Pyrénées.</description>
+    </item>
 
     <item>
       <title>Un lieu de réception avec vue imprenable</title>
